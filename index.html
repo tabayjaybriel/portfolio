@@ -6,18 +6,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jaybriel Tabay - Python Backend Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #1b302c;
+        --muted: #64736f;
+        --green: #16745e;
+        --green-dark: #105b4a;
+        --line: #dce6e1;
+        --canvas: #f4f7f5;
+        --surface: #ffffff;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body.portfolio {
+        margin: 0;
+        background: var(--canvas);
+        color: var(--ink);
+        font-family: "DM Sans", sans-serif;
+        line-height: 1.65;
+      }
+      .portfolio h1, .portfolio h2, .portfolio h3, .portfolio h4 {
+        color: var(--ink);
+        font-family: "Fraunces", Georgia, serif;
+        line-height: 1.2;
+      }
+      .portfolio h1 { font-size: clamp(2.75rem, 6vw, 4.5rem); letter-spacing: 0; }
+      .portfolio h2 { font-size: 2.1rem; letter-spacing: 0; }
+      .portfolio .container { max-width: 1120px; }
+      .portfolio > section:not(:first-of-type) { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+      .portfolio > section:first-of-type {
+        max-width: 940px;
+        padding: 4.5rem 1.5rem 3.5rem;
+        animation: arrive .65s ease-out both;
+      }
+      .portfolio .avatar {
+        display: grid;
+        width: 108px;
+        height: 108px;
+        margin: 0 auto 1.5rem;
+        place-items: center;
+        border: 1px solid #a9c9bd;
+        border-radius: 50%;
+        background: #e1eee8;
+        color: var(--green-dark);
+        font-family: "Fraunces", Georgia, serif;
+        font-size: 2rem;
+        
+      }
+      .portfolio .text-cyan-400, .portfolio .text-cyan-300,
+      .portfolio .text-indigo-600, .portfolio .text-indigo-700 { color: var(--green) !important; }
+      .portfolio .text-gray-400, .portfolio .text-gray-500,
+      .portfolio .text-slate-500, .portfolio .text-slate-600 { color: var(--muted) !important; }
+      .portfolio .text-slate-800, .portfolio .text-slate-700 { color: var(--ink) !important; }
+      .portfolio .bg-gray-800, .portfolio .bg-white {
+        background: var(--surface) !important;
+        border: 1px solid var(--line);
+      }
+      .portfolio .bg-gray-800 {
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(27, 48, 44, .045);
+        transition: transform .2s ease, box-shadow .2s ease;
+      }
+      .portfolio #projects .bg-gray-800 { height: 100%; }
+      .portfolio #projects .bg-gray-800:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 30px rgba(27, 48, 44, .09);
+      }
+      .portfolio .bg-cyan-500 { background: var(--green) !important; }
+      .portfolio .bg-cyan-500:hover, .portfolio .hover\\:bg-cyan-600:hover { background: var(--green-dark) !important; }
+      .portfolio .border-cyan-500 { border-color: var(--green) !important; }
+      .portfolio .bg-cyan-900, .portfolio .bg-indigo-50, .portfolio .bg-slate-100 {
+        background: #edf4f0 !important;
+      }
+      .portfolio .border-slate-100, .portfolio .border-slate-200 { border-color: var(--line) !important; }
+      .portfolio .max-w-4xl {
+        max-width: 900px;
+        padding: 2rem;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        box-shadow: 0 8px 24px rgba(27, 48, 44, .045);
+      }
+      .portfolio .space-y-10 > .group + .group { padding-top: 1.5rem; border-top: 1px solid var(--line); }
+      .portfolio .text-emerald-800 { color: #25634f !important; }
+      .portfolio .bg-emerald-50\\/50 { background: #eef6f1 !important; }
+      .portfolio a { transition: color .2s ease, background-color .2s ease; }
+      .portfolio a:focus-visible { outline: 3px solid #8ebbaa; outline-offset: 3px; }
+      .portfolio #projects > .grid { align-items: stretch; }
+      .portfolio #projects h2, .portfolio > section.container > h2 { margin-bottom: 2rem; }
+      .portfolio section.container.text-center { text-align: center; }
+      .portfolio section.container.text-center .grid > div { height: 100%; }
+      .portfolio section.container.text-center h3 { color: var(--green) !important; }
+      .portfolio #projects a, .portfolio #projects p.text-cyan-400 { color: var(--green) !important; }
+      .portfolio #projects a:hover { color: var(--green-dark) !important; }
+      .portfolio section.container:has(> h2):not(:first-of-type) { max-width: 1120px; }
+      .portfolio section.container:has(> h2):last-of-type { padding-bottom: 5rem; }
+      @keyframes arrive {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @media (max-width: 640px) {
+        .portfolio > section:first-of-type { padding-top: 3rem; }
+        .portfolio > section:not(:first-of-type) { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+        .portfolio .max-w-4xl { margin: 0 1rem; padding: 1.25rem; }
+        .portfolio .space-x-4 > :not([hidden]) ~ :not([hidden]) { margin-left: .25rem; }
+        .portfolio .space-x-4 a { display: inline-block; margin-top: .5rem; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      }
+    </style>
 </head>
 
-<body class="bg-gray-900 text-white">
+  <body class="portfolio">
     <!-- HERO -->
     <section class="container mx-auto px-6 py-20 text-center">
 
         <!-- Profile Image -->
-  <img 
-    src=".jpg" 
-    alt="Jaybriel E. Tabay" 
-    class="w-32 h-32 rounded-full object-cover mb-6 border-4 border-cyan-400 shadow-lg"
-  />
+		<div class="text-center">
+            <div class="avatar" role="img" aria-label="Jaybriel E. Tabay"><img src="path/to/profile.jpg" alt="Jaybriel E. Tabay" class="rounded-full w-32 h-32 mx-auto"></div>
+        </div>
 
         <h1 class="text-5xl font-bold mb-4">Jaybriel E. Tabay</h1>
         <p class="text-2xl text-cyan-400 mb-6">Python Backend Engineer</p>
@@ -143,6 +256,141 @@
                     Integrate frontend with backend services for seamless user experiences.</p>
             </div>
         </div>
+      	</section>
+		
+	
+	<!-- Features on the system created -->
+	<section class="max-w-4xl mx-auto my-12 p-6 shadow-md rounded-xl font-sans border border-slate-100">
+  
+  <!-- Header Title -->
+  <div class="border-b border-slate-200 pb-4 mb-6">
+    <h2 class="text-xs font-bold tracking-widest text-indigo-600 uppercase mb-1">Professional Experience</h2>
+    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline">
+      <h3 class="text-2xl font-extrabold text-slate-800">Full-Stack Developer</h3>
+      <span class="text-sm font-semibold text-slate-500">Freelance Projects &bull; Remote</span>
+    </div>
+    <span class="inline-block mt-1 text-sm font-medium text-slate-400">2020 &mdash; Present</span>
+  </div>
+
+  <!-- Project Space Layout -->
+  <div class="space-y-10">
+
+    <!-- Project 1: POS -->
+    <div class="group">
+      <h4 class="text-lg font-bold text-slate-800 group-hover:text-indigo-600 transition-colors duration-200">
+        Enterprise POS + Inventory System
+      </h4>
+      
+      <!-- Tech Stack Badges -->
+      <div class="flex flex-wrap gap-1.5 mt-2 mb-3">
+        <span class="px-2 py-0.5 text-xs font-semibold tracking-wide text-indigo-700 bg-indigo-50 rounded-md border border-indigo-100">C# / .NET</span>
+        <span class="px-2 py-0.5 text-xs font-semibold tracking-wide text-slate-700 bg-slate-100 rounded-md border border-slate-200">SQL Server</span>
+        <span class="px-2 py-0.5 text-xs font-semibold tracking-wide text-slate-700 bg-slate-100 rounded-md border border-slate-200">REST APIs</span>
+        <span class="px-2 py-0.5 text-xs font-semibold tracking-wide text-slate-700 bg-slate-100 rounded-md border border-slate-200">RBAC</span>
+      </div>
+
+      <!-- Bullet Points -->
+      <ul class="space-y-1.5 text-sm text-slate-600 list-none pl-0">
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">Database & Architecture:</strong> Designed and developed a database-driven POS and inventory management system handling sales transactions, inventory tracking, user management, and reporting.
+        </li>
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">API Integration:</strong> Implemented a structured REST/API layer to support communication between application components and provide reliable data access.
+        </li>
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">Security & Compliance:</strong> Enforced authentication and role-based authorization (RBAC) to protect sensitive sales, inventory, and administrative actions.
+        </li>
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">Performance Tuning:</strong> Optimized complex SQL queries and database operations, significantly increasing system responsiveness when processing large transaction datasets.
+        </li>
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">Hardware & UX Integration:</strong> Integrated barcode scanning for accelerated product lookup, high-speed sales processing, and inventory updates.
+        </li>
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">Data Integrity:</strong> Programmed strict inventory validation rules and transaction handling to maintain pinpoint stock accuracy during concurrent sales events.
+        </li>
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">Deployment:</strong> Managed full application lifecycle including deployment, configuration, database schema setup, and system maintenance.
+        </li>
+      </ul>
+
+      <!-- Highlighted Impact Metric -->
+      <div class="mt-3 px-3 py-2 bg-emerald-50/50 border border-emerald-100 rounded-lg flex items-center gap-2">
+        <span class="text-emerald-600 text-sm">📈</span>
+        <p class="text-xs text-emerald-800 font-semibold tracking-wide">
+          KEY METRIC: <span class="underline decoration-emerald-300 font-bold">Reduced manual inventory work by ~70%</span> through automated stock tracking, transaction recording, and instant reporting.
+        </p>
+      </div>
+    </div>
+
+    <!-- Project 2: HRMS -->
+    <div class="group">
+      <h4 class="text-lg font-bold text-slate-800 group-hover:text-indigo-600 transition-colors duration-200">
+        HRMS with Facial Recognition + Auto Payroll
+      </h4>
+      
+      <!-- Tech Stack Badges -->
+      <div class="flex flex-wrap gap-1.5 mt-2 mb-3">
+        <span class="px-2 py-0.5 text-xs font-semibold tracking-wide text-indigo-700 bg-indigo-50 rounded-md border border-indigo-100">C# / .NET</span>
+        <span class="px-2 py-0.5 text-xs font-semibold tracking-wide text-slate-700 bg-slate-100 rounded-md border border-slate-200">MySQL</span>
+        <span class="px-2 py-0.5 text-xs font-semibold tracking-wide text-slate-700 bg-slate-100 rounded-md border border-slate-200">Biometric/Facial Recognition AI</span>
+        <span class="px-2 py-0.5 text-xs font-semibold tracking-wide text-slate-700 bg-slate-100 rounded-md border border-slate-200">Automated Payroll Engines</span>
+      </div>
+
+      <!-- Bullet Points -->
+      <ul class="space-y-1.5 text-sm text-slate-600 list-none pl-0">
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">Core System Design:</strong> Engineered a comprehensive HR management system tracking employee records, attendance, leave management, and overtime.
+        </li>
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">AI Attendance Tracking:</strong> Integrated facial-recognition technology to automate identity verification and completely eliminate manual timekeeping.
+        </li>
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">Payroll Automation:</strong> Built a high-performance payroll calculation engine that processes raw time-in/time-out data against working hours, leave, overtime, and deductions.
+        </li>
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">Business Logic:</strong> Implemented highly configurable rules to seamlessly handle varied employee schedules, shift adjustments, and custom deduction criteria.
+        </li>
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">Data Modeling:</strong> Designed a robust relational database architecture optimized for high-volume attendance logs and payroll transactions.
+        </li>
+      </ul>
+
+      <!-- Highlighted Impact Metric -->
+      <div class="mt-3 px-3 py-2 bg-emerald-50/50 border border-emerald-100 rounded-lg flex items-center gap-2">
+        <span class="text-emerald-600 text-sm">📈</span>
+        <p class="text-xs text-emerald-800 font-semibold tracking-wide">
+          KEY METRIC: <span class="underline decoration-emerald-300 font-bold">Reduced payroll preparation time from 1 day to 2 hours</span> by automating processing workflows and administrative reporting.
+        </p>
+      </div>
+    
+
+    <!-- Project 3: AI Library -->
+    <div class="group">
+      <h4 class="text-lg font-bold text-slate-800 group-hover:text-indigo-600 transition-colors duration-200">
+        AI-Powered Digital Library
+      </h4>
+      
+      <!-- Tech Stack Badges -->
+      <div class="flex flex-wrap gap-1.5 mt-2 mb-3">
+        <span class="px-2 py-0.5 text-xs font-semibold tracking-wide text-indigo-700 bg-indigo-50 rounded-md border border-indigo-100">Python / Flask</span>
+        <span class="px-2 py-0.5 text-xs font-semibold tracking-wide text-slate-700 bg-slate-100 rounded-md border border-slate-200">FAISS</span>
+        <span class="px-2 py-0.5 text-xs font-semibold tracking-wide text-slate-700 bg-slate-100 rounded-md border border-slate-200">RAG Architecture</span>
+        <span class="px-2 py-0.5 text-xs font-semibold tracking-wide text-slate-700 bg-slate-100 rounded-md border border-slate-200">LLMs</span>
+      </div>
+
+      <!-- Bullet Points -->
+      <ul class="space-y-1.5 text-sm text-slate-600 list-none pl-0">
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">AI Architecture:</strong> Designed and deployed a web-based digital library featuring semantic search, suggested readings, and AI-assisted question-answering.
+        </li>
+        <li class="relative pl-5 before:content-['•'] before:absolute before:left-0 before:text-indigo-500 before:font-bold">
+          <strong class="text-slate-700 font-medium">RAG Pipeline:</strong> Built a Retrieval-Augmented Generation (RAG) pipeline combining vector retrieval with an LLM to generate highly context-aware responses.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
 
         <!-- SKILLS -->
         <section class="container mx-auto px-6 py-16 text-center">
